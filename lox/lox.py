@@ -1,5 +1,6 @@
 import sys
-from scanner import Scanner
+from lox.scanner import Scanner
+
 import pprint as pp
 
 

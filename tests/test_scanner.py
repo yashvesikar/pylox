@@ -1,7 +1,7 @@
 # WORK IN PROGRESS
 from unittest import TestCase
-from lox import Lox
-from token_type import TokenType
+from lox.lox import Lox
+from lox.token_type import TokenType
 
 class TestScanner(TestCase):
 
@@ -20,6 +20,11 @@ class TestScanner(TestCase):
 
     def test_4(self):
         my = Lox(["scan_4.l"])
+        print(len(my.tokens))
+        assert 19 == len(my.tokens)
+
+    def test_5(self):
+        my = Lox(["scan_5.l"])
         print(len(my.tokens))
         assert 19 == len(my.tokens)
 

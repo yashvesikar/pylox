@@ -1,6 +1,6 @@
-from token_type import TokenType as tk
-from pylox_token import Token
-from error import error
+from lox.token_type import TokenType as tk
+from lox.pylox_token import Token
+from lox.error import error
 
 
 class Scanner:
@@ -168,9 +168,18 @@ class Scanner:
     def match_slash(self):
         # If the second character is a slash then the token is a comment //
         # and the rest of the line should be ignored
-        if self.match(r'/'):
+        if self.match('/'):
             while self.peek() != '\n' and not self.is_at_end():
                 self.advance()
+        # TODO: Multiline comments
+        # elif self.match('*'):
+        #     self.advance()
+        #     while self.peek() != '*' and self.peek(1) != '/' and not self.is_at_end():
+        #         self.advance()
+        #         if self.peek() == '\n':
+        #             self.line += 1
+        #     if self.is_at_end():
+        #         error(self.line, "Unexpected character, incomplete comment block")
         else:
             return True
 
@@ -208,6 +217,3 @@ class Scanner:
 
         number = number/(10**offset)  # Update to decimal if necessary
         return number
-
-if __name__ == "__main__":
-    print(Scanner.string_to_int("123.4"))
